@@ -35,8 +35,7 @@ function draw() {
   dustbin2.display();
   dustbin3.display();
   ground.display();
-
-  keyPressed();
+	
   drawSprites();
  
 }
