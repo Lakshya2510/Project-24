@@ -42,7 +42,7 @@ function draw() {
 
 function keyPressed() {
 	if (keyCode === UP_ARROW) {
-	   Matter.Body.applyForce(paper.body,paper.body.position,{x:0.5, y:-14.99});
+	   Matter.Body.applyForce(paper.body,paper.body.position,{x:2, y:-16});
 	 }
    }
 
