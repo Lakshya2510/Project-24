@@ -10,6 +10,7 @@ class Dustbin {
       this.height = height;
       
       World.add(world, this.body);
+      this.bin = loadImage("dustbin.png");
     }
     display(){
       var pos =this.body.position;
@@ -20,6 +21,10 @@ class Dustbin {
       fill(255);
       rect(0, 0, this.width, this.height);
       pop();
+      
+      imageMode(CENTER);
+      image(this.bin,900,565,200,200)
+
     }
   };
 
