@@ -1,34 +1,48 @@
-class Paper {
-    constructor(x, y, r) {
-        var options = {
-            isStatic:false,
-            restitution:0.3,
-            friction:0.5,
-            density:1
-        }
 
-        this.x=x;
-        this.y=y;
-        this.r=r
+const Engine = Matter.Engine;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Body = Matter.Body;
 
-        this.body = Bodies.circle( this.x, this.y, this.r, options);
-        World.add(world,this.body);
-        this.paper = loadImage("paper.png");
+var engine, world;
+var ground, paper, dustbin1, dustbin2, dustbin3;
 
-      }
-      display(){
-        var pos =this.body.position;
-        
-        push();
-        translate(pos.x, pos.y);
-        rectMode(CENTER)
-        fill(225,225,225)
-        ellipse( 0,0,this.r);
-        pop();
-        imageMode(CENTER)
-        image(this.paper,pos.x,pos.y,80,80)
-      }
-      
-    };
+function setup() {
+	createCanvas(1200, 700);
 
+
+	engine = Engine.create();
+	world = engine.world;
+
+	ground = new Ground(width/2,675,width,20)
+	
+	paper = new Paper(100,500,40)
+	dustbin1 = new Dustbin(900,645,180,20)
+	dustbin2 = new Dustbin(820,570,20,170)
+	dustbin3 = new Dustbin(980,570,20,170)
+
+	Engine.run(engine);
+  
+}
+
+
+function draw() {
+  background(225);
+  rectMode(CENTER);
+  Engine.update(engine);
+  paper.display();
+  ground.display();
+  dustbin1.display();
+  dustbin2.display();
+  dustbin3.display();
+
+  drawSprites();
+ 
+}
+
+function keyPressed() {
+	if (keyCode === UP_ARROW) {
+	   Matter.Body.applyForce(paper.body,paper.body.position,{x:225, y:-300});
+	 }
+   }
 
